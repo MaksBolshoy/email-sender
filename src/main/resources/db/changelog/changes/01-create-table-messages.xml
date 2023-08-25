@@ -1,0 +1,54 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="01-create-table-messages" author="max">
+        <createTable tableName="messages">
+
+            <column name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="email_to" type="varchar(250)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="message" type="clob">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="subject" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="filename" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="attachment" type="varchar(450)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="template_location" type="varchar(450)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="status" type="varchar(14)" defaultValue="READY_TO_SEND">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="send_date" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="send_time" type="time without time zone">
+                <constraints nullable="false" />
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

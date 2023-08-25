@@ -1,0 +1,21 @@
+server:
+  port: ${PORT:8008}
+
+spring:
+#  liquibase:
+#    enabled: false
+#    change-log: classpath:db/changelog/changelog-master.xml
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:email-sender-test}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}

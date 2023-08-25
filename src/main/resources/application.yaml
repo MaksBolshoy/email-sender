@@ -1,0 +1,92 @@
+mail:
+  debug: true
+  properties:
+    smtp:
+      ssl:
+        enable: true
+server:
+  port: ${PORT:8008}
+
+spring:
+  config:
+    import:
+      optional:file:.env[.properties]
+    profiles:
+      active: ${PROFILE}
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-master.xml
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+
+  application:
+    name: email-sender
+
+  servlet:
+    multipart:
+      max-file-size: 130MB
+      max-request-size: 130MB
+
+  mail:
+    host: smtp.yandex.ru
+    username: ${YANDEX_USER}
+    password: ${YANDEX_PASSWORD}
+    port: 465
+    protocol: smtp
+    sample:
+      default: default.html
+      greeting: greeting.html
+    subject: Новости
+    message:
+      greeting: Новости Аскотт
+
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:email-sender}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+
+jwt:
+  secret: ${JWT_SECRET}
+  lifetime: ${JWT_LIFETIME}
+
+app:
+  cloud:
+    yandex:
+      client_id: ${YANDEX_CLIENT_ID}
+      client_secret: ${YANDEX_CLIENT_SECRET}
+      token: ${YANDEX_TOKEN}
+      storage:
+        pdf: email-sender/pdfs/
+
+  files:
+    contentType:
+      pdf: application/octet-stream
+      txt: text/plain
+    suffix:
+      pdf: .pdf
+    paths:
+      temp: src/main/resources/static/documents/
+
+quotes: Из того, чему вы обучились, не делайте вывод, будто уже все постигли. Напротив, усвойте, что осталось бесконечно много неосвоенного.;
+            Учитесь так, словно вы постоянно ощущаете нехватку своих знаний, и так, 
+            словно вы постоянно боитесь растерять свои знания.;
+            Тот, кто учится, не размышляя, впадет в заблуждение. 
+            Тот, кто размышляет, не желая учиться, окажется в затруднении.;
+            Если запастись терпением и проявить старание, то посеянные семена знания непременно дадут добрые всходы. 
+            Ученья корень горек, да плод сладок.;
+            Только самые мудрые и самые глупые не поддаются обучению.;

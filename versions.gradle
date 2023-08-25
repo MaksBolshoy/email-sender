@@ -1,0 +1,13 @@
+ext {
+    versions = [
+            'lombok' : '1.18.26',
+            'testContainers' : '1.17.6',
+            'jjwt' : '0.9.1',
+            'javax' : '1.1.1',
+            'yandexApi' : '1.03',
+            'springMail' : '3.0.4',
+            'mail' : '1.4.7',
+            'fileupload' : '1.5',
+            'commons' : '2.13.0'
+    ]
+}
